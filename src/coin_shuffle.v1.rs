@@ -3,18 +3,18 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RsaPublicKey {
     /// Modulus of the RSA public key represented as a big-endian byte array
-    #[prost(bytes="vec", tag="1")]
-    pub modulus: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="1")]
+    pub modulus: ::prost::bytes::Bytes,
     /// Public exponent of the RSA public key represented as a big-endian byte array
-    #[prost(bytes="vec", tag="2")]
-    pub exponent: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="2")]
+    pub exponent: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DecodedOutput {
     /// Address of the output
-    #[prost(bytes="vec", tag="1")]
-    pub address: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="1")]
+    pub address: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -96,37 +96,37 @@ pub struct ShuffleInfo {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EncodedOutputs {
     /// RSA encoded shuffle participants outputs equal to output addresses
-    #[prost(bytes="vec", repeated, tag="1")]
-    pub outputs: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
+    #[prost(bytes="bytes", repeated, tag="1")]
+    pub outputs: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TxSigningOutputs {
     /// Transaction outputs for signing
-    #[prost(bytes="vec", repeated, tag="1")]
-    pub outputs: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
+    #[prost(bytes="bytes", repeated, tag="1")]
+    pub outputs: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShuffleTxHash {
     /// Shuffle transaction hash
-    #[prost(bytes="vec", tag="1")]
-    pub tx_hash: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="1")]
+    pub tx_hash: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct JoinShuffleRoomRequest {
     /// U256 is a 256-bit unsigned integer.
-    #[prost(bytes="vec", tag="1")]
-    pub utxo_id: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="1")]
+    pub utxo_id: ::prost::bytes::Bytes,
     /// UNIX timestamp in seconds.
     #[prost(uint64, tag="2")]
     pub timestamp: u64,
     /// ECDSA signature of concatenated bytes of `utxo_id` and `timestamp`
     ///
     /// `signature = sign(concat(utxo_id, timestamp))`.
-    #[prost(bytes="vec", tag="3")]
-    pub signature: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="3")]
+    pub signature: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -156,8 +156,8 @@ pub struct ConnectShuffleRoomRequest {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ShuffleRoundRequest {
-    #[prost(bytes="vec", repeated, tag="2")]
-    pub encoded_outputs: ::prost::alloc::vec::Vec<::prost::alloc::vec::Vec<u8>>,
+    #[prost(bytes="bytes", repeated, tag="2")]
+    pub encoded_outputs: ::prost::alloc::vec::Vec<::prost::bytes::Bytes>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -167,8 +167,8 @@ pub struct ShuffleRoundResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SignShuffleTxRequest {
     /// ECDSA Signature of participant's input and list of all outputs
-    #[prost(bytes="vec", tag="1")]
-    pub signature: ::prost::alloc::vec::Vec<u8>,
+    #[prost(bytes="bytes", tag="1")]
+    pub signature: ::prost::bytes::Bytes,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -584,5 +584,6 @@ pub const FILE_DESCRIPTOR_SET: &[u8] = &[
     0x06, 0x00, 0x02, 0x04, 0x03, 0x12, 0x03, 0x3f, 0x33, 0x48, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
     0x6f, 0x33,
 ];
+include!("coin_shuffle.v1.serde.rs");
 include!("coin_shuffle.v1.tonic.rs");
 // @@protoc_insertion_point(module)
