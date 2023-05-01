@@ -1,5 +1,6 @@
 // @generated
 /// Generated client implementations.
+#[cfg(feature = "client")]
 pub mod shuffle_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
@@ -179,6 +180,7 @@ pub mod shuffle_service_client {
     }
 }
 /// Generated server implementations.
+#[cfg(feature = "server")]
 pub mod shuffle_service_server {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
